@@ -31,9 +31,33 @@ body {
   align-content: center;
 }
 
+header {
+  display: flex;
+  justify-content: center;
+  margin-block-end: 2.5625rem;
+}
+
 
 main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: var(--color-white);
+  max-width: 375px;
+  padding: 2rem 1.5rem;
+  border-radius: 25px 25px 0 0;
+}
 
+.calc {
+  background-color: var(--color-green-900);
+  border-radius: 15px;
+  padding: 1.5rem;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
 }
 
 

@@ -19,14 +19,14 @@
   </header>
 
   <main>
-    <form action="">
-      <div>
-        <label for="bill">Bill</label>
-        <input type="number" id="bill" name="bill" placeholder="0" min="0">
+    <form class="calc__input" action="">
+      <div class="bill">
+        <label for="bill-input">Bill</label>
+        <input type="number" id="bill-input" name="bill" placeholder="0" min="0">
       </div>
-      <div>
-        <label for="tip">Select Tip %</label>
-        <div name="tip" id="tip">
+      <div class="tip">
+        <label>Select Tip %</label>
+        <div name="tip" class="tip__btns">
           <button type="button">5%</button>
           <button type="button">10%</button>
           <button type="button">15%</button>
@@ -35,9 +35,9 @@
           <input type="number" name="custom" id="custom-tip" placeholder="Custom">
         </div>
       </div>
-      <div>
-        <label for="people">Number of People</label>
-        <input type="number" id="people" name="people" placeholder="0" min="1">
+      <div class="people">
+        <label for="people-input">Number of People</label>
+        <input type="number" id="people-input" name="people" placeholder="0" min="1">
       </div>
     </form>
 

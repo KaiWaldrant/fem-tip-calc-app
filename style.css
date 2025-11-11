@@ -22,6 +22,10 @@
 
 }
 
+* {
+  border: 1px solid red;
+}
+
 body {
   font-family: 'Space Mono', sans-serif;
   line-height: 24px;
@@ -48,6 +52,40 @@ main {
   padding: 2rem 1.5rem;
   border-radius: 25px 25px 0 0;
 }
+
+.calc__input {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+  label {
+    color: var(--color-grey-500);
+  }
+
+  /* input {
+    color: var(--color-green-900);
+    font-size: 1.5rem;
+    text-align: right;
+    padding: .5rem 1rem;
+    background-color: var(--color-grey-50);
+    border: none;
+    border-radius: 5px;
+  } */
+}
+
+.bill,
+.people,
+.tip {
+  display: grid;
+  gap: .5rem;
+  width: 100%;
+}
+/* 
+.tip__btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+} */
+
 
 .calc {
   background-color: var(--color-green-900);

@@ -42,23 +42,23 @@
     </form>
 
     <section class="calc">
-      <div>
-        <div id="tip-calc" class="calc__content">
-          <div>
+      <div class="calc__group">
+        <div id="tip-calc" class="calc__item">
+          <div class="calc__label">
             <h2 class="calc__heading">Tip Amount</h2>
             <h3 class="calc__subheading">/ person</h3>
           </div>
-          <div id="tip-amount">$0.00</div>
+          <div class="calc__amount" id="tip-amount">$0.00</div>
         </div>
-        <div class="calc__content">
-          <div>
+        <div class="calc__item">
+          <div class="calc__label">
             <h2 class="calc__heading">Total</h2>
             <h3 class="calc__subheading">/ person</h3>
           </div>
-          <div id="tip-amount">$0.00</div>
+          <div class="calc__amount"id="total-amount">$0.00</div>
         </div>
       </div>
-      <button type="button" id="reset">Reset</button>
+      <button class="calc__reset-btn" type="button" id="reset">RESET</button>
 
     </section>
   

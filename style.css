@@ -61,7 +61,7 @@ main {
     color: var(--color-grey-500);
   }
 
-  /* input {
+  input {
     color: var(--color-green-900);
     font-size: 1.5rem;
     text-align: right;
@@ -69,7 +69,8 @@ main {
     background-color: var(--color-grey-50);
     border: none;
     border-radius: 5px;
-  } */
+    width: 100%;
+  }
 }
 
 .bill,
@@ -79,12 +80,12 @@ main {
   gap: .5rem;
   width: 100%;
 }
-/* 
+
 .tip__btns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-} */
+}
 
 
 .calc {

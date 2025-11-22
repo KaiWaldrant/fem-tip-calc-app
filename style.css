@@ -158,6 +158,7 @@ main {
 }
 
 footer {
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
 }
@@ -168,4 +169,20 @@ footer {
 }
 .attribution a {
   color: hsl(228, 45%, 44%);
+}
+
+@media (min-width: 768px) {
+  main {
+    max-width: 608px;
+    padding: 3rem 5rem;
+    border-radius: 25px;
+  }
+
+  .tip__btns {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .people::before {
+    top: 355px;
+  }
 }

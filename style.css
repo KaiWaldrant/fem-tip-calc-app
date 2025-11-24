@@ -65,6 +65,7 @@ main {
     width: 100%;
   }
 }
+
 .bill::before,
 .people::before {
   width: 24px;
@@ -184,5 +185,36 @@ footer {
 
   .people::before {
     top: 355px;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    flex-direction: row;
+    max-width: 920px;
+    padding: 2rem;
+    gap: 3rem;
+  }
+
+  .calc__input {
+    max-width: 379px;
+  }
+
+  .tip__btns input {
+    padding: 0;
+  }
+
+  .calc {
+    width: 100%;
+    padding-inline: 2rem;
+    justify-content: space-between;
+  }
+
+  .calc__item {
+    align-items: center;
+  }
+
+  .calc__amount {
+    font-size: 3rem;
   }
 }

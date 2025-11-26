@@ -93,6 +93,10 @@ main {
   width: 100%;
 }
 
+button {
+  cursor: pointer;
+}
+
 .tip__btns {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -107,8 +111,8 @@ main {
 
     &:active,
     &:focus,
-    &:hover {
-      cursor: pointer;
+    &:hover,
+    &.active {
       color: var(--color-green-900);
       background-color: var(--color-green-400);
       border-color: var(--color-green-900);
@@ -156,6 +160,10 @@ main {
   font-size: 1.25rem;
   padding: 0.5rem 2rem;
   border-radius: 5px;
+}
+
+.calc__reset-btn:hover {
+  background: var(--color-green-200);
 }
 
 footer {

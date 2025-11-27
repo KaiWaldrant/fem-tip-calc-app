@@ -60,7 +60,6 @@ input {
   display: grid;
   gap: 2rem;
   width: 100%;
-  position: relative;
   label {
     color: var(--color-grey-500);
   }
@@ -89,10 +88,16 @@ input {
   border: 2px solid var(--color-green-400);
 }
 
+.bill,
+.people {
+  position: relative;
+}
+
 .bill::before,
 .people::before {
   width: 24px;
   height: 24px;
+  top: 50px;
   left: 23px;
   opacity: 0.5;
   position: absolute;
@@ -100,12 +105,10 @@ input {
 
 .bill::before {
   content: url("/images/icon-dollar.svg");
-  top: 48px;
 }
 
 .people::before {
   content: url("/images/icon-person.svg");
-  top: 428px;
 }
 
 .bill,

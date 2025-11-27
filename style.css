@@ -216,10 +216,6 @@ footer {
   .tip__btns {
     grid-template-columns: 1fr 1fr 1fr;
   }
-
-  .people::before {
-    top: 355px;
-  }
 }
 
 @media (min-width: 1024px) {

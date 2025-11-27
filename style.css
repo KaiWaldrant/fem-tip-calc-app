@@ -45,6 +45,17 @@ main {
   border-radius: 25px 25px 0 0;
 }
 
+input {
+  color: var(--color-green-900);
+  font-size: 1.5rem;
+  text-align: right;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-grey-50);
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+}
+
 .calc__input {
   display: grid;
   gap: 2rem;
@@ -53,17 +64,29 @@ main {
   label {
     color: var(--color-grey-500);
   }
+}
 
-  input {
-    color: var(--color-green-900);
-    font-size: 1.5rem;
-    text-align: right;
-    padding: 0.5rem 1rem;
-    background-color: var(--color-grey-50);
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-  }
+.people__label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.error {
+  color: var(--color-orange-400);
+}
+
+.border_color_error,
+.border_color_error:active,
+.border_color_error:focus-visible {
+  outline: var(--color-orange-400);
+  border: 2px solid var(--color-orange-400);
+}
+
+.border_color_success,
+.border_color_success:active,
+.border_color_success:focus-visible {
+  outline-color: var(--color-green-400);
+  border: 2px solid var(--color-green-400);
 }
 
 .bill::before,

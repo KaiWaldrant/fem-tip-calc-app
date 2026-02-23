@@ -1,5 +1,5 @@
 export const calculateTip = (bill, tip, people) => {
-  if (people === 0 || people == null || bill === 0 || bill == null) {
+  if (people <= 0 || people == null || bill <= 0 || bill == null) {
     // do nothing
     return;
   }

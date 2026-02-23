@@ -53,3 +53,35 @@ test("calculates tip correctly when tip is 0", () => {
   expect(result.tipPerPerson).toBe(0);
   expect(result.totalAmountPerPerson).toBe(50);
 })
+
+test("calculates tip correctly when bill is -100", () => {
+  const bill = -100;
+  const tip = 15;
+  const people = 2;
+
+  const result = calculateTip(bill, tip, people);
+
+  expect(result).toBeUndefined();
+})
+
+test("calculates tip correctly when people is -2", () => {
+  const bill = 100;
+  const tip = 15;
+  const people = -2;
+
+  const result = calculateTip(bill, tip, people);
+
+  expect(result).toBeUndefined();
+})
+
+
+test("what if bill is non-numeric", () => {
+  const bill = "abc"
+  const tip = 15;
+  const people = 2;
+
+  const result = calculateTip(bill, tip, people);
+
+  expect(result.tipPerPerson).toBeNaN();
+  expect(result.totalAmountPerPerson).toBeNaN();
+})

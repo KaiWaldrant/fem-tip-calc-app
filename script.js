@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
+import { calculateTip } from "./calculations.js";
+
+document.addEventListener("DOMContentLoaded", () => {
   const bill = document.getElementById("bill-input");
   const people = document.getElementById("people-input");
   const tipButtons = document.querySelectorAll(".tip__btns button");
@@ -10,26 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let billInput, peopleInput;
   let selectedTip = 0;
-
-  const calculateTip = () => {
-    if (
-      peopleInput == 0 ||
-      peopleInput == null ||
-      billInput == 0 ||
-      billInput == null
-    ) {
-      // do nothing
-      return;
-    }
-
-    totalTip = (billInput * selectedTip) / 100;
-    tipPerPerson = totalTip / peopleInput;
-    amountPerPerson = billInput / peopleInput;
-    totalAmountPerPerson = amountPerPerson + tipPerPerson;
-
-    tipAmount.textContent = "$" + tipPerPerson.toFixed(2);
-    totalAmount.textContent = "$" + totalAmountPerPerson.toFixed(2);
-  };
 
   const removeError = () => {
     people.classList.remove("border_color_error");
@@ -52,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   people.addEventListener("input", () => {
     peopleInput = parseFloat(people.value);
-    if (peopleInput == 0) {
+    if (peopleInput === 0) {
       removeSuccess(people);
       people.classList.add("border_color_error");
       peopleError.textContent = "Can't be zero";
@@ -60,11 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     removeError();
     addSuccess(people);
-    calculateTip();
+    calculateTip(billInput, selectedTip, peopleInput);
   });
 
   const clearActiveClass = (elements) => {
-    elements.forEach((el) => el.classList.remove("active"));
+    elements.forEach((el) => {el.classList.remove("active")});
   };
 
   tipButtons.forEach((button) => {
@@ -88,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
     calculateTip();
   });
 
-  resetButton.addEventListener("click", function () {
+  resetButton.addEventListener("click", () => {
     billInput = 0;
     peopleInput = 0;
     selectedTip = 0;

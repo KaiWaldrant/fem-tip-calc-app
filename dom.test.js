@@ -40,7 +40,7 @@ test("Check if the people input is working", () => {
   peopleInput.value = 2;
   peopleInput.dispatchEvent(new Event("input"));
   expect(peopleInput.classList.contains("border_color_success")).toBe(true);
-  expect(peopleInput.value).toBe("10");
+  expect(peopleInput.value).toBe("2");
 })
 
 test("Check if the calculation is working", () => {

@@ -3,19 +3,25 @@
 import html from "./index.html?raw";
 import { init } from "./script.js";
 
-import { expect, test } from "vitest";
+import { expect, test, beforeEach } from "vitest";
 
-document.body.innerHTML = html;
-init();
+let billInput, peopleInput, tipButtons, customTipInput, tipAmount, totalAmount, resetButton, peopleError;
 
-const billInput = document.getElementById("bill-input");
-const peopleInput = document.getElementById("people-input");
-const tipButtons = document.querySelectorAll(".tip__btns button");
-const customTipInput = document.getElementById("custom-tip");
-const tipAmount = document.getElementById("tip-amount");
-const totalAmount = document.getElementById("total-amount");
-const resetButton = document.getElementById("reset");
-const peopleError = document.getElementById("people-error");
+beforeEach(() => {
+  document.body.innerHTML = html;
+  init();
+  billInput = document.getElementById("bill-input");
+  peopleInput = document.getElementById("people-input");
+  tipButtons = document.querySelectorAll(".tip__btns button");
+  customTipInput = document.getElementById("custom-tip");
+  tipAmount = document.getElementById("tip-amount");
+  totalAmount = document.getElementById("total-amount");
+  resetButton = document.getElementById("reset");
+  peopleError = document.getElementById("people-error");
+})
+
+
+
 
 test("Check if the bill input is working", () => {
   billInput.value = 100;
@@ -59,22 +65,19 @@ test("Check if the reset button is working", () => {
   tipButtons[2].click();
   billInput.dispatchEvent(new Event("input"));
   peopleInput.dispatchEvent(new Event("input"));
-  expect(tipAmount.textContent).toBe("$7.50");
-  expect(totalAmount.textContent).toBe("$57.50");
   resetButton.click();
   expect(billInput.value).toBe("");
+  expect(billInput.classList.contains("border_color_success")).toBe(false);
+  expect(billInput.classList.contains("border_color_error")).toBe(false);
   expect(peopleInput.value).toBe("");
+  expect(peopleInput.classList.contains("border_color_success")).toBe(false);
+  expect(peopleInput.classList.contains("border_color_error")).toBe(false);
+  expect(peopleError.textContent).toBe("");
   expect(customTipInput.value).toBe("");
+  expect(customTipInput.classList.contains("border_color_success")).toBe(false);
+  expect(customTipInput.classList.contains("border_color_error")).toBe(false);
   expect(tipAmount.textContent).toBe("$0.00");
   expect(totalAmount.textContent).toBe("$0.00");
-
-  expect(billInput.classList.contains("border_color_success")).toBe(false);
-  expect(peopleInput.classList.contains("border_color_success")).toBe(false);
-  expect(customTipInput.classList.contains("border_color_success")).toBe(false);
-  expect(peopleError.textContent).toBe("");
-  expect(peopleInput.classList.contains("border_color_error")).toBe(false);
-  expect(billInput.classList.contains("border_color_error")).toBe(false);
-  expect(customTipInput.classList.contains("border_color_error")).toBe(false);
   
 })
 

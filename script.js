@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetButton = document.getElementById("reset");
   const peopleError = document.getElementById("people-error");
 
-  let billInput, peopleInput;
+  let billInput, peopleInput = null;
   let selectedTip = 0;
 
   const removeError = () => {
@@ -26,10 +26,21 @@ document.addEventListener("DOMContentLoaded", () => {
     el.classList.remove("border_color_success");
   };
 
+  const tipResult = (bill, tip, people) => {
+    const result =calculateTip(bill, tip, people);
+
+    if (result === undefined) {
+      return;
+    }
+    tipAmount.textContent = `$${result.tipPerPerson.toFixed(2)}`;
+    totalAmount.textContent = `$${result.totalAmountPerPerson.toFixed(2)}`;
+  };
+
   bill.addEventListener("input", () => {
+    console.log("bill input:", bill.value);
     billInput = parseFloat(bill.value);
     addSuccess(bill);
-    calculateTip();
+    tipResult(billInput, selectedTip, peopleInput);
   });
 
   people.addEventListener("input", () => {
@@ -42,11 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     removeError();
     addSuccess(people);
-    calculateTip(billInput, selectedTip, peopleInput);
+    tipResult(billInput, selectedTip, peopleInput);
   });
 
   const clearActiveClass = (elements) => {
-    elements.forEach((el) => {el.classList.remove("active")});
+    elements.forEach((el) => {
+      el.classList.remove("active");
+    });
   };
 
   tipButtons.forEach((button) => {
@@ -59,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       selectedTip = parseFloat(this.textContent);
 
-      calculateTip();
+      tipResult(billInput, selectedTip, peopleInput);
     });
   });
 
@@ -67,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     clearActiveClass(tipButtons);
     customTipInput.classList.add("border_color_success");
     selectedTip = parseFloat(this.value) || 0;
-    calculateTip();
+    tipResult(billInput, selectedTip, peopleInput);
   });
 
   resetButton.addEventListener("click", () => {

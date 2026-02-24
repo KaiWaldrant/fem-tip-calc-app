@@ -1,6 +1,6 @@
 import { calculateTip } from "./calculations.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+function init() {
   const bill = document.getElementById("bill-input");
   const people = document.getElementById("people-input");
   const tipButtons = document.querySelectorAll(".tip__btns button");
@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetButton = document.getElementById("reset");
   const peopleError = document.getElementById("people-error");
 
-  let billInput, peopleInput = null;
+  let billInput,
+    peopleInput = null;
   let selectedTip = 0;
 
   const removeError = () => {
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const tipResult = (bill, tip, people) => {
-    const result =calculateTip(bill, tip, people);
+    const result = calculateTip(bill, tip, people);
 
     if (result === undefined) {
       return;
@@ -97,4 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
     tipAmount.textContent = "$0.00";
     totalAmount.textContent = "$0.00";
   });
-});
+
+}
+
+document.addEventListener("DOMContentLoaded", init);
+
+export { init };

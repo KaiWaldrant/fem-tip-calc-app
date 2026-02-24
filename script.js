@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
+import { calculateTip } from "./calculations.js";
+
+function init() {
   const bill = document.getElementById("bill-input");
   const people = document.getElementById("people-input");
   const tipButtons = document.querySelectorAll(".tip__btns button");
@@ -8,28 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const resetButton = document.getElementById("reset");
   const peopleError = document.getElementById("people-error");
 
-  let billInput, peopleInput;
+  let billInput,
+    peopleInput = null;
   let selectedTip = 0;
-
-  const calculateTip = () => {
-    if (
-      peopleInput == 0 ||
-      peopleInput == null ||
-      billInput == 0 ||
-      billInput == null
-    ) {
-      // do nothing
-      return;
-    }
-
-    totalTip = (billInput * selectedTip) / 100;
-    tipPerPerson = totalTip / peopleInput;
-    amountPerPerson = billInput / peopleInput;
-    totalAmountPerPerson = amountPerPerson + tipPerPerson;
-
-    tipAmount.textContent = "$" + tipPerPerson.toFixed(2);
-    totalAmount.textContent = "$" + totalAmountPerPerson.toFixed(2);
-  };
 
   const removeError = () => {
     people.classList.remove("border_color_error");
@@ -44,15 +27,26 @@ document.addEventListener("DOMContentLoaded", function () {
     el.classList.remove("border_color_success");
   };
 
+  const tipResult = (bill, tip, people) => {
+    const result = calculateTip(bill, tip, people);
+
+    if (result === undefined) {
+      return;
+    }
+    tipAmount.textContent = `$${result.tipPerPerson.toFixed(2)}`;
+    totalAmount.textContent = `$${result.totalAmountPerPerson.toFixed(2)}`;
+  };
+
   bill.addEventListener("input", () => {
+    console.log("bill input:", bill.value);
     billInput = parseFloat(bill.value);
     addSuccess(bill);
-    calculateTip();
+    tipResult(billInput, selectedTip, peopleInput);
   });
 
   people.addEventListener("input", () => {
     peopleInput = parseFloat(people.value);
-    if (peopleInput == 0) {
+    if (peopleInput === 0) {
       removeSuccess(people);
       people.classList.add("border_color_error");
       peopleError.textContent = "Can't be zero";
@@ -60,11 +54,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     removeError();
     addSuccess(people);
-    calculateTip();
+    tipResult(billInput, selectedTip, peopleInput);
   });
 
   const clearActiveClass = (elements) => {
-    elements.forEach((el) => el.classList.remove("active"));
+    elements.forEach((el) => {
+      el.classList.remove("active");
+    });
   };
 
   tipButtons.forEach((button) => {
@@ -77,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       selectedTip = parseFloat(this.textContent);
 
-      calculateTip();
+      tipResult(billInput, selectedTip, peopleInput);
     });
   });
 
@@ -85,10 +81,10 @@ document.addEventListener("DOMContentLoaded", function () {
     clearActiveClass(tipButtons);
     customTipInput.classList.add("border_color_success");
     selectedTip = parseFloat(this.value) || 0;
-    calculateTip();
+    tipResult(billInput, selectedTip, peopleInput);
   });
 
-  resetButton.addEventListener("click", function () {
+  resetButton.addEventListener("click", () => {
     billInput = 0;
     peopleInput = 0;
     selectedTip = 0;
@@ -101,5 +97,11 @@ document.addEventListener("DOMContentLoaded", function () {
     customTipInput.value = "";
     tipAmount.textContent = "$0.00";
     totalAmount.textContent = "$0.00";
+    clearActiveClass(tipButtons);
   });
-});
+
+}
+
+document.addEventListener("DOMContentLoaded", init);
+
+export { init };

@@ -97,6 +97,7 @@ function init() {
     customTipInput.value = "";
     tipAmount.textContent = "$0.00";
     totalAmount.textContent = "$0.00";
+    clearActiveClass(tipButtons);
   });
 
 }
